@@ -1,3 +1,9 @@
+ffmpeg (4:0.6+svn20101123-0ubuntu1~ndec) maverick; urgency=low
+
+  * New import from upstream development branch
+
+ -- Nicolas Dechesne <n-dechesne@ti.com>  Tue, 23 Nov 2010 16:35:24 +0100
+
 ffmpeg (4:0.6.1-2ubuntu1) natty; urgency=low
 
   * Merge from debian. Remaining changes:
