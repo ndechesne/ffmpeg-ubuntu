@@ -1,0 +1,3 @@
+# Overriding these fpic lintian errors. Please see bug #528080.
+libavcore0: shlib-with-non-pic-code usr/lib/i686/cmov/libavcore.so.0.14.0
+libavcore0: shlib-with-non-pic-code usr/lib/libavutil.so.0.14.0

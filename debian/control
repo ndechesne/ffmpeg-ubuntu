@@ -60,6 +60,7 @@ Priority: extra
 Architecture: any
 Depends: libavutil50 (= ${binary:Version}),
  libavcodec52 (= ${binary:Version}),
+ libavcore0 (= ${binary:Version}),
  libavdevice52 (= ${binary:Version}),
  libpostproc51 (= ${binary:Version}),
  libavformat52 (= ${binary:Version}),
@@ -88,6 +89,18 @@ Description: ffmpeg utility library
  by all other ffmpeg libraries.
  .
  This package contains a Debian-specific version of the libavutil shared
+ object that should only be used by Debian packages.
+
+Package: libavcore0
+Architecture: any
+Depends: ${shlibs:Depends},
+         libavutil-dev (= ${binary:Version}),
+         ${misc:Depends}
+Description: ffmpeg utility library
+ The new library is meant to contain the core multimedia utilities for
+ FFmpeg, to make them shareable between more libav* libraries. 
+ .
+ This package contains a Debian-specific version of the libcore shared
  object that should only be used by Debian packages.
 
 Package: libavcodec52
@@ -158,8 +171,8 @@ Package: libavutil-dev
 Section: libdevel
 Architecture: any
 Depends: libavutil50 (>= ${binary:Version}) | libavutil-extra-50 (>= ${source:Upstream-Version}),
- libavutil50 (<= ${source:Upstream-Version}-99) | libavutil-extra-50 (<= ${source:Upstream-Version}-99),
- ${misc:Depends}
+         libavutil50 (<= ${source:Upstream-Version}-99) | libavutil-extra-50 (<= ${source:Upstream-Version}-99),
+         ${misc:Depends}
 Description: development files for libavutil
  This is the common utility library from the ffmpeg project. It is required
  by all other ffmpeg libraries.
@@ -173,6 +186,7 @@ Architecture: any
 Depends: libavcodec52 (>= ${binary:Version}) | libavcodec-extra-52 (>= ${source:Upstream-Version}),
  libavcodec52 (<= ${source:Upstream-Version}-99) | libavcodec-extra-52 (<= ${source:Upstream-Version}-99),
  libavutil-dev (= ${binary:Version}),
+ libavcore-dev (= ${binary:Version}),
  ${misc:Depends}
 Suggests: libfaad-dev,
  libgsm1-dev,
@@ -192,12 +206,27 @@ Description: development files for libavcodec
  This package contains the header files and static libraries needed to
  compile applications or shared objects that use libavcodec.
 
+Package: libavcore-dev
+Section: libdevel
+Architecture: any
+Depends: libavcore0 (>= ${binary:Version}) | libavcore-extra-50 (>= ${source:Upstream-Version}),
+         libavcore0 (<= ${source:Upstream-Version}-99) | libavcore-extra-50 (<= ${source:Upstream-Version}-99),
+         libavutil-dev (= ${binary:Version}),
+        ${misc:Depends}
+Description: development files for libavutil
+ This is the common utility library from the ffmpeg project. It is required
+ by all other ffmpeg libraries.
+ .
+ This package contains the header files and static libraries needed to
+ compile applications or shared objects that use libavutil.
+
 Package: libavdevice-dev
 Section: libdevel
 Architecture: any
 Depends: libavdevice52 (>= ${binary:Version}) | libavdevice-extra-52 (>= ${source:Upstream-Version}),
  libavdevice52 (<= ${source:Upstream-Version}-99) | libavdevice-extra-52 (<= ${source:Upstream-Version}-99),
  libavformat-dev (= ${binary:Version}),
+ libavcore-dev (= ${binary:Version}),
  ${misc:Depends}
 Description: development files for libavdevice
  This is the device handling library from the ffmpeg project.
@@ -211,6 +240,7 @@ Architecture: any
 Depends: libavformat52 (>= ${binary:Version}) | libavformat-extra-52 (>= ${source:Upstream-Version}),
  libavformat52 (<= ${source:Upstream-Version}-99) | libavformat-extra-52 (<= ${source:Upstream-Version}-99),
  libavcodec-dev (= ${binary:Version}),
+ libavcore-dev (= ${binary:Version}),
  ${misc:Depends}
 Description: development files for libavformat
  This is the demuxer library from the ffmpeg project. It supports most

@@ -1,0 +1,4 @@
+usr/include/libavcore
+usr/lib/libavcore.a
+usr/lib/{,*/,*/*/}libavcore.so
+usr/lib/pkgconfig/libavcore.pc
